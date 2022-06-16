@@ -10,3 +10,5 @@ TOKEN=
 AUDITID=
 STAFFROLE=
 ```
+
+3. After that, run `node start`
