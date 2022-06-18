@@ -1,9 +1,9 @@
 //import discord
 const discord = require('discord.js');
-const client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES] });
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES] });
 //import colors
 const colors = require('colors');
 //import fs
