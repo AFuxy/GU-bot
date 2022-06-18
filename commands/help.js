@@ -1,5 +1,5 @@
 const {
-    MessageEmbed
+    MessageEmbed, discord
 } = require("discord.js");
 module.exports = {
     "name": "help",
@@ -20,13 +20,13 @@ module.exports = {
         var commandlist = "";
         commandOrder.forEach(commandName => {
             let command = client.commands.get(commandName);
-            commandlist = commandlist + `**/${commandName}** | '${command.description}'\n`;
+            commandlist = commandlist + `**/${commandName}** | \`${command.description}\`\n`;
         });
         var Help = new MessageEmbed()
             .setColor("#00cc99")
             .setTitle("Help")
             .addField("Commands", commandlist)
-            .setFooter(ver);
+            .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
         interaction.reply({ embeds: [Help], ephemeral: true });
     }
 }

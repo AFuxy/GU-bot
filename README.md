@@ -10,6 +10,7 @@ TOKEN=
 SERVERID=
 AUDITID=
 STAFFROLE=
+DEBUG=false
 ```
 
 3. After that, run `npm start`

@@ -9,7 +9,7 @@ module.exports = {
             .setColor("#00cc99")
             .setTitle("Ping")
             .setDescription(`Pong! ${client.ws.ping ? `The ping is ${Math.round(client.ws.ping)}ms.` : ''}`)
-            .setFooter(ver);
+            .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
         interaction.reply({ embeds: [pingEmbed], ephemeral: true });
     }
 }
