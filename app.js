@@ -14,7 +14,7 @@ const appversion = require('./package.json').version;
 require('dotenv').config();
 
 //globals
-global.footer = "Created by DarkMatter#1708 • Version " + appversion;
+global.footer = "Created by DarkMatter#1708 and PIE#2562 • Version " + appversion;
 global.developers = [
     '200612445373464576',
     '323534734749597696'
@@ -240,7 +240,16 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     // console.log();
 });
 
-
+client.on('memberJoin', async (member) => {
+    if (member.guild.id !== process.env.SERVERID) return;
+    //embed
+    const Join = new discord.MessageEmbed()
+        .setColor('#00ff00')
+        .setTitle(`${member.user.tag} joined **${member.guild.name}**`)
+        .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
+        .setTimestamp()
+        .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+});
 
 //discord login
 client.login(process.env.TOKEN);
