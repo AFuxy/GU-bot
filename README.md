@@ -7,8 +7,9 @@ Gamers Unite Public Bot Code
 
 ```env
 TOKEN=
+SERVERID=
 AUDITID=
 STAFFROLE=
 ```
 
-3. After that, run `node start`
+3. After that, run `npm start`
