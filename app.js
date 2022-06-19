@@ -353,5 +353,16 @@ client.on('memberJoin', async (member) => {
     client.channels.cache.get(process.env.AUDITID).send({ embeds: [Join] });
 });
 
+client.on('memberLeave', async (member) => {
+    if (member.guild.id !== process.env.SERVERID) return;
+    //embed
+    const Leave = new discord.MessageEmbed()
+        .setColor('#ff0000')
+        .setTitle(`${member.user.tag} left **${member.guild.name}**`)
+        .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
+        .setTimestamp()
+        .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+});
+
 //discord login
 client.login(process.env.TOKEN);
