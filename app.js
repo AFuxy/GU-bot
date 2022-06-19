@@ -2,7 +2,7 @@
 const discord = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, ContextMenuCommandBuilder } = require('@discordjs/builders');
 client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES] });
 //import colors
 const colors = require('colors');
@@ -177,8 +177,12 @@ client.once('ready', async () => {
     client.user.setActivity(`V${appversion}`, { type: 'WATCHING' });
 });
 
+const data = new ContextMenuCommandBuilder()
+	.setName('suggest')
+	.setType(3);
+
 client.on('interactionCreate', async (interaction) => {
-	if (!interaction.isCommand() && !interaction.isButton() && !interaction.isModalSubmit()) return;
+	if (!interaction.isCommand() && !interaction.isButton() && !interaction.isModalSubmit() && !interaction.isContextMenu()) return;
     // console.log(interaction);
 	
     if (interaction.isCommand()) {
@@ -190,10 +194,18 @@ client.on('interactionCreate', async (interaction) => {
         }
     } else if (interaction.isButton()) {
         try{
-            if (interaction.customId == "Accept" ){
-                await interaction.reply({ content: "Accepted", ephemeral: true });
-            }else if (interaction.customId == "Deny"){
-                await interaction.reply({ content: "Declined", ephemeral: true });
+            if (interaction.customId.startsWith("A") ){
+                // let newA = interaction.customId.substring(1);
+                let gameA = interaction.customId.substring(19);
+                await interaction.reply({ content: `Accept message sent to <@${interaction.user.id}>`, ephemeral: true });
+                //send a dm message
+                await interaction.user.send({ content: `Your Suggestion has been accepted: ${gameA}` });
+            }else if (interaction.customId.startsWith("D") ){
+                // let newD = interaction.customId.substring(1);
+                let gameD = interaction.customId.substring(19);
+                await interaction.reply({ content: `Decline message sent to <@${interaction.user.id}>`, ephemeral: true });
+                //send a dm message
+                await interaction.user.send({ content: `Your Suggestion has been declined: ${gameD}` });
             }else{
                 await interaction.reply({ content: "ERROR", ephemeral: true });
             }
@@ -203,14 +215,47 @@ client.on('interactionCreate', async (interaction) => {
         }
     } else if (interaction.isModalSubmit()) {
         try{
+            const Game = interaction.fields.getTextInputValue('GameName');
             const row = new discord.MessageActionRow()
 		        .addComponents(
 			    new discord.MessageButton()
-                    .setCustomId('Accept')
+                    .setCustomId(`A${interaction.user.id}${Game}`)
 				    .setLabel('Accept')
 				    .setStyle('SUCCESS')
-                    .setDisabled(true)
+                    // .setDisabled(true)
 		    )
+            .addComponents(
+                new discord.MessageButton()
+                    .setCustomId(`D${interaction.user.id}${Game}`)
+                    .setLabel('Deny')
+                    .setStyle('DANGER')
+                    // .setDisabled(true)
+            );
+            var Suggest = new discord.MessageEmbed()
+                .setColor("#ff8c00")
+                .setTitle("Suggestion | " + interaction.user.username + "#" + interaction.user.discriminator)
+                .addField("User:", "<@" + interaction.user.id + ">")
+                .addField("Game:", Game)
+                // .addField("Channel:", "<#" + interaction.channel.id + ">")
+                .setTimestamp()
+                .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+            client.channels.cache.get(process.env.AUDITID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
+            interaction.reply({ content: "Your suggestion has been sent to staff", ephemeral: true});
+        }catch(err){
+            console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
+            await interaction.reply({ content: "Something went wrong", ephemeral: true });
+        }
+    } else if (interaction.isContextMenu()){
+        try{
+            if (interaction.customId == "suggest"){
+                const row = new discord.MessageActionRow()
+                .addComponents(
+                new discord.MessageButton()
+                    .setCustomId('Accept')
+                    .setLabel('Accept')
+                    .setStyle('SUCCESS')
+                    .setDisabled(true)
+            )
             .addComponents(
                 new discord.MessageButton()
                     .setCustomId('Deny')
@@ -229,6 +274,7 @@ client.on('interactionCreate', async (interaction) => {
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
             client.channels.cache.get(process.env.AUDITID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
             interaction.reply({ content: "Your suggestion has been sent to staff", ephemeral: true});
+            }
         }catch(err){
             console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
             await interaction.reply({ content: "Something went wrong", ephemeral: true });

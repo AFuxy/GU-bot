@@ -57,7 +57,7 @@ module.exports = {
             Games.setTitle("Games");
             Games.setColor("#0000ff");
             Games.setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-            interaction.reply({ embeds: [Games] });
+            interaction.reply({ embeds: [Games], ephemeral: true });
         }
     }
 }
