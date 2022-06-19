@@ -16,6 +16,7 @@ module.exports = {
     //         required: true
     //     }
     // ],
+    "setDMPermission": false,
     async execute(interaction){
         const modal = new Modal()
 			.setCustomId('GameSuggest')

@@ -37,6 +37,7 @@ module.exports = {
             required: true
         }
     ],
+    "setDMPermission": false,
     async execute(interaction){
         if(interaction.options.getString("games") == "other"){
             const modal = new Modal()
@@ -52,12 +53,31 @@ module.exports = {
             modal.addComponents(Game);
 		    await interaction.showModal(modal);
         }else{
+            let roleName = interaction.options.getString("games");
+            //find if role exists on server
+            let role = interaction.guild.roles.cache.find(role => role.name === roleName);
+            // console.log(role)
+            // let role = interaction.guild.roles.cache.find(x => x.name === roleName);
+                if (!role) {
+                    //role does not exist, create it
+                    interaction.guild.roles.create({name: roleName, permissions: [], reason: `Role did not exist before`}).then(role => {
+                        //add role to user
+                        interaction.member.roles.add(role);
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                    //after creating role give to user
+                    // await interaction.member.roles.add(role);
+                } else {
+                    //if exists give role to user
+                    await interaction.member.roles.add(role);
+                }
             let Games = new MessageEmbed();
-            Games.setDescription(`${interaction.options.getString("games")}`);
+            Games.setDescription(`Role ${interaction.options.getString("games")} given.`);
             Games.setTitle("Games");
             Games.setColor("#0000ff");
             Games.setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-            interaction.reply({ embeds: [Games], ephemeral: true });
+            await interaction.reply({ embeds: [Games], ephemeral: true });
         }
     }
 }

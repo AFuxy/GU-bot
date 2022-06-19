@@ -14,7 +14,7 @@ const appversion = require('./package.json').version;
 require('dotenv').config();
 
 //globals
-global.footer = "Created by Gamers Unit devs • Version " + appversion;
+global.footer = "Created by Gamers Unite devs • Version " + appversion;
 global.developers = [
     '200612445373464576',
     '323534734749597696'
@@ -162,10 +162,12 @@ client.once('ready', async () => {
         client.commands.forEach(async (command) => {
             if(!command.options) command.options = [];
             if(!command.developerOnly) command.developerOnly = false;
+            if(!command.setDMPermission) command.setDMPermission = false;
             let data = {
                 name: command.name,
                 description: command.description,
                 options: command.options,
+                setDMPermission: !command.setDMPermission,
                 defaultPermission: !command.developerOnly
             };
             await (client.guilds.cache.get('986084748784992328') ?? await client.guilds.fetch('986084748784992328')).commands.create(data);
@@ -190,19 +192,22 @@ client.on('interactionCreate', async (interaction) => {
             await client.commands.get(interaction.commandName).execute(interaction);
         }catch(err){
             console.log(`Command: ${interaction.commandName}, run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
-            await interaction.reply({ content: "Something went wrong", ephemeral: true });
+            await interaction.deferReply();
+            await interaction.editReply({ content: "Something went wrong", ephemeral: true });
         }
     } else if (interaction.isButton()) {
         try{
             if (interaction.customId.startsWith("A") ){
                 // let newA = interaction.customId.substring(1);
                 let gameA = interaction.customId.substring(19);
+                // await interaction.deleteReply();
                 await interaction.reply({ content: `Accept message sent to <@${interaction.user.id}>`, ephemeral: true });
                 //send a dm message
                 await interaction.user.send({ content: `Your Suggestion has been accepted: ${gameA}` });
             }else if (interaction.customId.startsWith("D") ){
                 // let newD = interaction.customId.substring(1);
                 let gameD = interaction.customId.substring(19);
+                // await interaction.deleteReply();
                 await interaction.reply({ content: `Decline message sent to <@${interaction.user.id}>`, ephemeral: true });
                 //send a dm message
                 await interaction.user.send({ content: `Your Suggestion has been declined: ${gameD}` });
@@ -210,7 +215,7 @@ client.on('interactionCreate', async (interaction) => {
                 await interaction.reply({ content: "ERROR", ephemeral: true });
             }
         }catch(err){
-            console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
+            console.log(`Command: button press, run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
             await interaction.reply({ content: "Something went wrong", ephemeral: true });
         }
     } else if (interaction.isModalSubmit()) {
@@ -239,7 +244,7 @@ client.on('interactionCreate', async (interaction) => {
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-            client.channels.cache.get(process.env.AUDITID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
+            client.channels.cache.get(process.env.SUGGESTID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
             interaction.reply({ content: "Your suggestion has been sent to staff", ephemeral: true});
         }catch(err){
             console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);

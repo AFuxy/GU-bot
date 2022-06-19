@@ -6,6 +6,7 @@ const {
 module.exports = {
     "name": "devs",
     "description": "Show a list of devs",
+    "setDMPermission": false,
     async execute(interaction){
         var DevList = "";
         developers.forEach(devID => {
@@ -23,6 +24,7 @@ module.exports = {
             .setTitle("Developers")
             .setDescription(DevList)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-        interaction.reply({ embeds: [Help], ephemeral: true, components: [row] });
+        await interaction.deferReply();
+        await interaction.editReply({ embeds: [Help], ephemeral: true, components: [row] });
     }
 }

@@ -4,18 +4,14 @@ const {
 module.exports = {
     "name": "help",
     "description": "Show all commands",
+    "setDMPermission": false,
     async execute(interaction){
         var commandOrder = [
             'help',
-            // 'support',
-            // 'invite',
-            // 'getuser',
-            // 'canvas',
-            // 'publicdraw',
-            // 'privatecanvas',
-            // 'privatedraw',
-			'ping',
-            // 'devs'
+            'games',
+            'suggest',
+			// 'ping',
+            'devs'
         ];
         var commandlist = "";
         commandOrder.forEach(commandName => {
@@ -27,6 +23,7 @@ module.exports = {
             .setTitle("Help")
             .addField("Commands", commandlist)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-        interaction.reply({ embeds: [Help], ephemeral: true });
+        await interaction.deferReply();
+        await interaction.editReply({ embeds: [Help], ephemeral: true });
     }
 }
