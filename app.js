@@ -14,7 +14,7 @@ const appversion = require('./package.json').version;
 require('dotenv').config();
 
 //globals
-global.footer = "Created by DarkMatter#1708 and PIE#2562 • Version " + appversion;
+global.footer = "Created by Gamers Unit devs • Version " + appversion;
 global.developers = [
     '200612445373464576',
     '323534734749597696'
@@ -178,12 +178,61 @@ client.once('ready', async () => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-	if (!interaction.isCommand()) return;
-	try{
-        await client.commands.get(interaction.commandName).execute(interaction);
-    }catch(err){
-        console.log(`Command: ${interaction.commandName}, run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
-        await interaction.reply({ content: "Something went wrong", ephemeral: true });
+	if (!interaction.isCommand() && !interaction.isButton() && !interaction.isModalSubmit()) return;
+    // console.log(interaction);
+	
+    if (interaction.isCommand()) {
+        try{
+            await client.commands.get(interaction.commandName).execute(interaction);
+        }catch(err){
+            console.log(`Command: ${interaction.commandName}, run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
+            await interaction.reply({ content: "Something went wrong", ephemeral: true });
+        }
+    } else if (interaction.isButton()) {
+        try{
+            if (interaction.customId == "Accept" ){
+                await interaction.reply({ content: "Accepted", ephemeral: true });
+            }else if (interaction.customId == "Deny"){
+                await interaction.reply({ content: "Declined", ephemeral: true });
+            }else{
+                await interaction.reply({ content: "ERROR", ephemeral: true });
+            }
+        }catch(err){
+            console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
+            await interaction.reply({ content: "Something went wrong", ephemeral: true });
+        }
+    } else if (interaction.isModalSubmit()) {
+        try{
+            const row = new discord.MessageActionRow()
+		        .addComponents(
+			    new discord.MessageButton()
+                    .setCustomId('Accept')
+				    .setLabel('Accept')
+				    .setStyle('SUCCESS')
+                    .setDisabled(true)
+		    )
+            .addComponents(
+                new discord.MessageButton()
+                    .setCustomId('Deny')
+                    .setLabel('Deny')
+                    .setStyle('DANGER')
+                    .setDisabled(true)
+            );
+            const Game = interaction.fields.getTextInputValue('GameName');
+            var Suggest = new discord.MessageEmbed()
+                .setColor("#ff8c00")
+                .setTitle("Suggestion | " + interaction.user.username + "#" + interaction.user.discriminator)
+                .addField("User:", "<@" + interaction.user.id + ">")
+                .addField("Game:", Game)
+                // .addField("Channel:", "<#" + interaction.channel.id + ">")
+                .setTimestamp()
+                .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+            client.channels.cache.get(process.env.AUDITID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
+            interaction.reply({ content: "Your suggestion has been sent to staff", ephemeral: true});
+        }catch(err){
+            console.log(`Command: , run by: ${interaction.user.username}#${interaction.user.discriminator} failed for the reason: ${err}`);
+            await interaction.reply({ content: "Something went wrong", ephemeral: true });
+        }
     }
 });
 
@@ -249,6 +298,8 @@ client.on('memberJoin', async (member) => {
         .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
         .setTimestamp()
         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+    //send embed to audit channel
+    client.channels.cache.get(process.env.AUDITID).send({ embeds: [Join] });
 });
 
 //discord login
