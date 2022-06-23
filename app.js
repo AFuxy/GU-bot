@@ -324,22 +324,6 @@ client.on('messageDelete', async (message) => {
     client.channels.cache.get(process.env.AUDITID).send({ embeds: [Delete] });
 });
 
-// Find Difference Between Two String and then sorround it with ``
-function findDiff(str1, str2) {
-    let diff = "";
-    // let str11 = "test";
-    // let str22 = "testnice";
-    for (let i = 0; i < str2.length; i++) {
-        if (str1[i] == str2[i]) {
-            diff += ` \`${str2[i]}\``;
-        }else{
-            diff += `${str2[i]}`;
-        }
-    }
-    // console.log(diff);
-    return `${diff}`;
-}
-
 //if user edits message send to auditid
 client.on('messageUpdate', async (oldMessage, newMessage) => {
 
@@ -364,12 +348,12 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 
 //  member logging
 
-client.on('memberJoin', async (member) => {
+client.on('guildMemberAdd', async (member) => {
     if (member.guild.id !== process.env.SERVERID) return;
     //embed
     const Join = new discord.MessageEmbed()
         .setColor('#00ff00')
-        .setTitle(`**${member.user.tag}** joined server`)
+        .setTitle(`**${member.user.tag}** joined ${member.guild.name}`)
         .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
         .setTimestamp()
         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
@@ -377,12 +361,12 @@ client.on('memberJoin', async (member) => {
     client.channels.cache.get(process.env.AUDITID).send({ embeds: [Join] });
 });
 
-client.on('memberLeave', async (member) => {
+client.on('guildMemberRemove', async (member) => {
     if (member.guild.id !== process.env.SERVERID) return;
     //embed
     const Leave = new discord.MessageEmbed()
         .setColor('#ff0000')
-        .setTitle(`**${member.user.tag}** left server`)
+        .setTitle(`**${member.user.tag}** left ${member.guild.name}`)
         .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
         .setTimestamp()
         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
@@ -391,13 +375,14 @@ client.on('memberLeave', async (member) => {
 });
 
 //banned user
-client.on('guildBanAdd', async (guild, user) => {
-    if (guild.id !== process.env.SERVERID) return;
+client.on('guildBanAdd', async (ban) => {
+    if (ban.guild.id !== process.env.SERVERID) return;
     //embed
     const Ban = new discord.MessageEmbed()
         .setColor('#ff0000')
-        .setTitle(`**${user.tag}** was banned`)
-        .setAuthor({ name: `${user.tag}`, iconURL: `${user.avatarURL()}` })
+        .setTitle(`**${ban.user.tag}** was banned`)
+        .setAuthor({ name: `${ban.user.tag}`, iconURL: `${ban.user.avatarURL()}` })
+        .addField('Reason', `${ban.reason}`)
         .setTimestamp()
         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
     //send embed to audit channel
@@ -405,13 +390,14 @@ client.on('guildBanAdd', async (guild, user) => {
 });
 
 //unbanned user
-client.on('guildBanRemove', async (guild, user) => {
-    if (guild.id !== process.env.SERVERID) return;
+client.on('guildBanRemove', async (ban) => {
+    if (ban.guild.id !== process.env.SERVERID) return;
     //embed
     const Unban = new discord.MessageEmbed()
         .setColor('#00ff00')
-        .setTitle(`**${user.tag}** was unbanned`)
-        .setAuthor({ name: `${user.tag}`, iconURL: `${user.avatarURL()}` })
+        .setTitle(`**${ban.user.tag}** was unbanned`)
+        .setAuthor({ name: `${ban.user.tag}`, iconURL: `${ban.user.avatarURL()}` })
+        // .addField('Reason', `${ban.reason}`)
         .setTimestamp()
         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
     //send embed to audit channel
@@ -419,18 +405,18 @@ client.on('guildBanRemove', async (guild, user) => {
 });
 
 //user kicked
-client.on('guildMemberRemove', async (member) => {
-    if (member.guild.id !== process.env.SERVERID) return;
-    //embed
-    const Kick = new discord.MessageEmbed()
-        .setColor('#ff0000')
-        .setTitle(`**${member.user.tag}** was kicked`)
-        .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
-        .setTimestamp()
-        .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-    //send embed to audit channel
-    client.channels.cache.get(process.env.AUDITID).send({ embeds: [Kick] });
-});
+// client.on('guildMemberRemove', async (member) => {
+//     if (member.guild.id !== process.env.SERVERID) return;
+//     //embed
+//     const Kick = new discord.MessageEmbed()
+//         .setColor('#ff0000')
+//         .setTitle(`**${member.user.tag}** was kicked`)
+//         .setAuthor({ name: `${member.user.tag}`, iconURL: `${member.user.avatarURL()}` })
+//         .setTimestamp()
+//         .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+//     //send embed to audit channel
+//     client.channels.cache.get(process.env.AUDITID).send({ embeds: [Kick] });
+// });
 
 //
 
