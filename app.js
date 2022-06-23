@@ -170,7 +170,7 @@ client.once('ready', async () => {
                 setDMPermission: !command.setDMPermission,
                 defaultPermission: !command.developerOnly
             };
-            await (client.guilds.cache.get('986084748784992328') ?? await client.guilds.fetch('986084748784992328')).commands.create(data);
+            await (client.guilds.cache.get(process.env.SERVERID) ?? await client.guilds.fetch(process.env.SERVERID)).commands.create(data);
         });
     }else{
         refreshSlashCommands();
@@ -201,14 +201,35 @@ client.on('interactionCreate', async (interaction) => {
                 // let newA = interaction.customId.substring(1);
                 let gameA = interaction.customId.substring(19);
                 // await interaction.deleteReply();
-                await interaction.reply({ content: `Accept message sent to <@${interaction.user.id}>`, ephemeral: true });
+                let accepted = new discord.MessageEmbed()
+                    .setColor("#00ff00")
+                    .setTitle("Suggestion Accepted | " + interaction.user.username + "#" + interaction.user.discriminator)
+                    .addField("User:", "<@" + interaction.user.id + ">")
+                    .addField("Game:", gameA)
+                // .addField("Channel:", "<#" + interaction.channel.id + ">")
+                .setTimestamp()
+                .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+                //edit the message
+                await interaction.editReply({ embeds: [accepted]});
+                // await interaction.reply({ content: `Accept message sent to <@${interaction.user.id}>`, ephemeral: true });
                 //send a dm message
                 await interaction.user.send({ content: `Your Suggestion has been accepted: ${gameA}` });
             }else if (interaction.customId.startsWith("D") ){
                 // let newD = interaction.customId.substring(1);
                 let gameD = interaction.customId.substring(19);
                 // await interaction.deleteReply();
-                await interaction.reply({ content: `Decline message sent to <@${interaction.user.id}>`, ephemeral: true });
+                //declined embed
+                let declined = new discord.MessageEmbed()
+                    .setColor("#ff0000")
+                    .setTitle("Suggestion Declined | " + interaction.user.username + "#" + interaction.user.discriminator)
+                    .addField("User:", "<@" + interaction.user.id + ">")
+                    .addField("Game:", gameD)
+                // .addField("Channel:", "<#" + interaction.channel.id + ">")
+                .setTimestamp()
+                .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+                //edit the message
+                await interaction.editReply({ embeds: [declined]});
+                // await interaction.reply({ content: `Decline message sent to <@${interaction.user.id}>`, ephemeral: true });
                 //send a dm message
                 await interaction.user.send({ content: `Your Suggestion has been declined: ${gameD}` });
             }else{
