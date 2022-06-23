@@ -198,40 +198,40 @@ client.on('interactionCreate', async (interaction) => {
     } else if (interaction.isButton()) {
         try{
             if (interaction.customId.startsWith("A") ){
-                // let newA = interaction.customId.substring(1);
-                let gameA = interaction.customId.substring(19);
+                var acceptedvar = interaction.customId.split("-");
+                const user = await client.users.fetch(acceptedvar[1]).catch(console.error);
                 // await interaction.deleteReply();
                 let accepted = new discord.MessageEmbed()
                     .setColor("#00ff00")
-                    .setTitle("Suggestion Accepted | " + interaction.user.username + "#" + interaction.user.discriminator)
-                    .addField("User:", "<@" + interaction.user.id + ">")
-                    .addField("Game:", gameA)
+                    .setTitle("Suggestion Accepted | " + user.username + "#" + user.discriminator)
+                    .addField("User:", "<@" + user.id + ">")
+                    .addField("Game:", acceptedvar[3])
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
                 //edit the message
-                await interaction.editReply({ embeds: [accepted]});
-                // await interaction.reply({ content: `Accept message sent to <@${interaction.user.id}>`, ephemeral: true });
+                await interaction.message.edit({ embeds: [accepted], components: [] });
+                await interaction.reply({ content: `Accept message sent to <@${user.id}>`, ephemeral: true });
                 //send a dm message
-                await interaction.user.send({ content: `Your Suggestion has been accepted: ${gameA}` });
+                await user.send({ content: `Your Suggestion has been accepted: ${acceptedvar[3]}` });
             }else if (interaction.customId.startsWith("D") ){
-                // let newD = interaction.customId.substring(1);
-                let gameD = interaction.customId.substring(19);
+                var declinedvar = interaction.customId.split("-");
+                const user = await client.users.fetch(declinedvar[1]).catch(console.error);
                 // await interaction.deleteReply();
                 //declined embed
                 let declined = new discord.MessageEmbed()
                     .setColor("#ff0000")
-                    .setTitle("Suggestion Declined | " + interaction.user.username + "#" + interaction.user.discriminator)
-                    .addField("User:", "<@" + interaction.user.id + ">")
-                    .addField("Game:", gameD)
+                    .setTitle("Suggestion Declined | " + user.username + "#" + user.discriminator)
+                    .addField("User:", "<@" + user.id + ">")
+                    .addField("Game:", declinedvar[3])
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
                 //edit the message
-                await interaction.editReply({ embeds: [declined]});
-                // await interaction.reply({ content: `Decline message sent to <@${interaction.user.id}>`, ephemeral: true });
+                await interaction.message.edit({ embeds: [declined], components: [] });
+                await interaction.reply({ content: `Decline message sent to <@${user.id}>`, ephemeral: true });
                 //send a dm message
-                await interaction.user.send({ content: `Your Suggestion has been declined: ${gameD}` });
+                await user.send({ content: `Your Suggestion has been declined: ${declinedvar[3]}` });
             }else{
                 await interaction.reply({ content: "ERROR", ephemeral: true });
             }
@@ -245,14 +245,14 @@ client.on('interactionCreate', async (interaction) => {
             const row = new discord.MessageActionRow()
 		        .addComponents(
 			    new discord.MessageButton()
-                    .setCustomId(`A${interaction.user.id}${Game}`)
+                    .setCustomId(`A-${interaction.user.id}-${interaction.message}-${Game}`)
 				    .setLabel('Accept')
 				    .setStyle('SUCCESS')
                     // .setDisabled(true)
 		    )
             .addComponents(
                 new discord.MessageButton()
-                    .setCustomId(`D${interaction.user.id}${Game}`)
+                    .setCustomId(`D-${interaction.user.id}-${interaction.message}-${Game}`)
                     .setLabel('Deny')
                     .setStyle('DANGER')
                     // .setDisabled(true)
