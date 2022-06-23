@@ -1,6 +1,6 @@
 {
   "name": "gu-bot",
-  "version": "1.7.10",
+  "version": "1.8.11",
   "description": "Gamers Unite Public Bot Code",
   "main": "app.js",
   "scripts": {

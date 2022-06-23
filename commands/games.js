@@ -50,7 +50,14 @@ module.exports = {
 		        // Short means only a single line of text
 			    .setStyle('SHORT');
             const Game = new MessageActionRow().addComponents(gameName);
-            modal.addComponents(Game);
+            const GameURL = new TextInputComponent()
+                .setCustomId('GameURL')
+                // The label is the prompt the user sees for this input
+                .setLabel("A URL to the game offical site or Steam")
+		        // Short means only a single line of text
+			    .setStyle('SHORT');
+            const Game2 = new MessageActionRow().addComponents(GameURL);
+            modal.addComponents(Game, Game2);
 		    await interaction.showModal(modal);
         }else{
             let roleName = interaction.options.getString("games");

@@ -197,41 +197,67 @@ client.on('interactionCreate', async (interaction) => {
         }
     } else if (interaction.isButton()) {
         try{
-            if (interaction.customId.startsWith("A") ){
+            if (interaction.customId.startsWith("A")){
                 var acceptedvar = interaction.customId.split("-");
                 const user = await client.users.fetch(acceptedvar[1]).catch(console.error);
+                const Game = acceptedvar[3];
+                const URL = acceptedvar[4];
                 // await interaction.deleteReply();
                 let accepted = new discord.MessageEmbed()
                     .setColor("#00ff00")
-                    .setTitle("Suggestion Accepted | " + user.username + "#" + user.discriminator)
-                    .addField("User:", "<@" + user.id + ">")
-                    .addField("Game:", acceptedvar[3])
+                    .setTitle(`Suggestion Accepted | ${user.username}#${user.discriminator}`)
+                    .addField("User:", `<@${user.id}>`)
+                    .addField("Accepted:", `<@${interaction.user.id}>`)
+                    // .addField("Game:", Game)
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+                if(Game == ""){
+                    accepted.addField("Game:", "NULL");
+                }else{
+                    accepted.addField("Game:", Game);
+                }
+                if(URL == ""){
+                    accepted.addField("URL:", "NULL");
+                }else{
+                    accepted.addField("URL:", URL);
+                }
                 //edit the message
                 await interaction.message.edit({ embeds: [accepted], components: [] });
                 await interaction.reply({ content: `Accept message sent to <@${user.id}>`, ephemeral: true });
                 //send a dm message
-                await user.send({ content: `Your Suggestion has been accepted: ${acceptedvar[3]}` });
-            }else if (interaction.customId.startsWith("D") ){
+                await user.send({ content: `Your Suggestion has been accepted: ${Game}` });
+            }else if (interaction.customId.startsWith("D")){
                 var declinedvar = interaction.customId.split("-");
                 const user = await client.users.fetch(declinedvar[1]).catch(console.error);
+                const Game = declinedvar[3];
+                const URL = declinedvar[4];
                 // await interaction.deleteReply();
                 //declined embed
                 let declined = new discord.MessageEmbed()
                     .setColor("#ff0000")
-                    .setTitle("Suggestion Declined | " + user.username + "#" + user.discriminator)
-                    .addField("User:", "<@" + user.id + ">")
-                    .addField("Game:", declinedvar[3])
+                    .setTitle(`Suggestion Declined | ${user.username}#${user.discriminator}`)
+                    .addField("User:", `<@${user.id}>`)
+                    .addField("Declined:", `<@${interaction.user.id}>`)
+                    // .addField("Game:", Game)
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+                if(Game == ""){
+                    declined.addField("Game:", "NULL");
+                }else{
+                    declined.addField("Game:", Game);
+                }
+                if(URL == ""){
+                    declined.addField("URL:", "NULL");
+                }else{
+                    declined.addField("URL:", URL);
+                }
                 //edit the message
                 await interaction.message.edit({ embeds: [declined], components: [] });
                 await interaction.reply({ content: `Decline message sent to <@${user.id}>`, ephemeral: true });
                 //send a dm message
-                await user.send({ content: `Your Suggestion has been declined: ${declinedvar[3]}` });
+                await user.send({ content: `Your Suggestion has been declined: ${Game}` });
             }else{
                 await interaction.reply({ content: "ERROR", ephemeral: true });
             }
@@ -242,17 +268,19 @@ client.on('interactionCreate', async (interaction) => {
     } else if (interaction.isModalSubmit()) {
         try{
             const Game = interaction.fields.getTextInputValue('GameName');
+            const URL = interaction.fields.getTextInputValue('GameURL');
+            // console.log(URL);
             const row = new discord.MessageActionRow()
 		        .addComponents(
 			    new discord.MessageButton()
-                    .setCustomId(`A-${interaction.user.id}-${interaction.message}-${Game}`)
+                    .setCustomId(`A-${interaction.user.id}-${interaction.message}-${Game}-${URL}`)
 				    .setLabel('Accept')
 				    .setStyle('SUCCESS')
                     // .setDisabled(true)
 		    )
             .addComponents(
                 new discord.MessageButton()
-                    .setCustomId(`D-${interaction.user.id}-${interaction.message}-${Game}`)
+                    .setCustomId(`D-${interaction.user.id}-${interaction.message}-${Game}-${URL}`)
                     .setLabel('Deny')
                     .setStyle('DANGER')
                     // .setDisabled(true)
@@ -261,10 +289,19 @@ client.on('interactionCreate', async (interaction) => {
                 .setColor("#ff8c00")
                 .setTitle("Suggestion | " + interaction.user.username + "#" + interaction.user.discriminator)
                 .addField("User:", "<@" + interaction.user.id + ">")
-                .addField("Game:", Game)
                 // .addField("Channel:", "<#" + interaction.channel.id + ">")
                 .setTimestamp()
                 .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+                if(Game == ""){
+                    Suggest.addField("Game:", "NULL");
+                }else{
+                    Suggest.addField("Game:", Game);
+                }
+                if(URL == ""){
+                    Suggest.addField("URL:", "NULL");
+                }else{
+                    Suggest.addField("URL:", URL);
+                }
             client.channels.cache.get(process.env.SUGGESTID).send({ content: `<@&${process.env.STAFFROLE}>`, embeds: [Suggest], components: [row] });
             interaction.reply({ content: "Your suggestion has been sent to staff", ephemeral: true});
         }catch(err){
