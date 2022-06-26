@@ -86,5 +86,11 @@ module.exports = {
             Games.setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
             await interaction.reply({ embeds: [Games], ephemeral: true });
         }
+        let Update = new MessageEmbed();
+        Update.setDescription(`Role ${interaction.options.getString("games")} given to <@${interaction.user.id}>.`);
+        Update.setTitle("Game added");
+        Update.setColor("#0000FF");
+        Update.setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
+        client.channels.cache.get(process.env.AUDITID).send({ embeds: [Update] });
     }
 }
