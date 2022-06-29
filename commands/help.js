@@ -23,7 +23,6 @@ module.exports = {
             .setTitle("Help")
             .addField("Commands", commandlist)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-        await interaction.deferReply();
-        await interaction.editReply({ embeds: [Help], ephemeral: true });
+        await interaction.reply({ embeds: [Help], ephemeral: true });
     }
 }

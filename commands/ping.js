@@ -11,7 +11,6 @@ module.exports = {
             .setTitle("Ping")
             .setDescription(`Pong! ${client.ws.ping ? `The ping is ${Math.round(client.ws.ping)}ms.` : ''}`)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });
-        await interaction.deferReply();
-        await interaction.editReply({ embeds: [pingEmbed], ephemeral: true });
+        await interaction.reply({ embeds: [pingEmbed], ephemeral: true });
     }
 }
