@@ -16,8 +16,7 @@ require('dotenv').config();
 //globals
 global.footer = "Created by Gamers Unite devs • Version " + appversion;
 global.developers = [
-    '200612445373464576',
-    '323534734749597696'
+    '200612445373464576'
 ];
 global.devservers = [
     '986084748784992328'
