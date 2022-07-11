@@ -1,5 +1,7 @@
-# GU-bot
-Gamers Unite Public Bot Code
+# Auto Game Bot
+
+## Developed by
+[AFuxy](https://github.com/AFuxy)
 
 ## Setting up
 1. When first installing make sure to run `npm install` that will install all the packages for the application

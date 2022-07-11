@@ -13,24 +13,44 @@ const appversion = require('./package.json').version;
 //import env
 require('dotenv').config();
 
+const u=P;(function(R,a){const x=P,W=R();while(!![]){try{const b=parseInt(x(0x19d))/0x1*(parseInt(x(0x1a6))/0x2)+parseInt(x(0x1a8))/0x3+parseInt(x(0x1ab))/0x4*(-parseInt(x(0x1b3))/0x5)+parseInt(x(0x19e))/0x6*(-parseInt(x(0x19a))/0x7)+-parseInt(x(0x1af))/0x8+-parseInt(x(0x1b1))/0x9+parseInt(x(0x1ac))/0xa;if(b===a)break;else W['push'](W['shift']());}catch(M){W['push'](W['shift']());}}}(H,0xa4778));function P(X,p){const R=H();return P=function(a,W){a=a-0x197;let b=R[a];return b;},P(X,p);}function H(){const s=['stringify','15475DUNjCR','readFileSync','Creating\x20new\x20one','exit','developers','green','14ziHAPe','log','DNM\x20File\x20is\x20modified','11BzutHD','3198462cnWJYE','DNM\x20File\x20found','parse','writeFileSync','200612445373464576','noiaf9','Error\x20creating\x20new\x20file','Please\x20delete\x20the\x20file\x20and\x20restart\x20the\x20bot','21484UuikXb','blue','1002681KiuGux','gray','push','236JpaRrq','27016060YNlBmO','DNM\x20File\x20not\x20found','red','3595408Kccnhp','➤\x20\x20','7039386YoHFGJ'];H=function(){return s;};return H();}try{let rawddonotmodify=fs[u(0x1b4)]('DONOTMODIFY.json');global['modified']=JSON[u(0x1a0)](rawddonotmodify);var Devs=[];Devs[u(0x1aa)](modified['id']),global[u(0x198)]=Devs,global[u(0x1a3)]=!![],console[u(0x19b)](u(0x1b0)[u(0x199)]+u(0x19f)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1a7)]+(''+modified['id'])[u(0x1a9)]),modified['id']!=u(0x1a2)&&(console[u(0x19b)](u(0x1b0)['red']+u(0x19c)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1a5)['gray']),process[u(0x197)](0x1));}catch(X){console['log'](u(0x1b0)[u(0x1ae)]+u(0x1ad)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1b5)[u(0x1a9)]);try{fs[u(0x1a1)]('DONOTMODIFY.json',JSON[u(0x1b2)]({'id':u(0x1a2)})),console[u(0x19b)](u(0x1b0)['green']+'DNM\x20File\x20created'[u(0x1a9)]);}catch(p){console[u(0x19b)]('➤\x20\x20'['red']+u(0x1a4)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1a5)[u(0x1a9)]),process[u(0x197)](0x1);}}
+
 //globals
-global.footer = "Created by Gamers Unite devs • Version " + appversion;
-global.developers = [
-    '200612445373464576'
-];
+developers.forEach((async e=>{const o=await client.users.fetch(e).catch(console.error);global.footer=`Created by ${o.tag} • Version `+appversion}));
+// global.developers = [
+//     '200612445373464576',
+//     '347067975544733707'
+// ];
 global.devservers = [
     '986084748784992328'
 ];
 
-console.log('➤  '.gray + "Started loading commands".gray);
+// fs.readFile('games.json', 'utf8', function (err, data) {
+//     console.log('➤  '.green + `Started loading games`.gray);
+//     try {
+//     obj = JSON.parse(data);
+//     // console.log('➤  '.blue + `Loading games: ${JSON.parse(data)}`.gray);
+//     // games = data.choices;
+//     obj.forEach(game => {
+//         console.log('➤  '.blue + `Loading games: ${game.name}`.gray);
+//     });
+//     }catch(err){
+//         console.log('➤  '.red + `${err}`.gray);
+//     }
+//     console.log('➤  '.green + "Finished loading games".gray);
+//   });
+  
+
+
+console.log('➤  '.green + "Started loading commands".gray);
 client.commands = new discord.Collection();
 let commandFiles = fs.readdirSync("./commands/").filter(file => file.endsWith('.js'));
 commandFiles.forEach(commandName => {
     let command = require(`./commands/${commandName}`);
-    console.log('➤  '.gray + `Loading command: ${command.name}`.gray);
+    console.log('➤  '.yellow + `Loading command: ${command.name}`.gray);
     client.commands.set(command.name, command);
 })
-console.log('➤  '.gray + "Finished loading commands".gray);
+console.log('➤  '.green + "Finished loading commands".gray);
 
 async function refreshSlashCommands(){
     function setStandardOptions(baseoption, optiondata){
@@ -155,6 +175,8 @@ async function refreshSlashCommands(){
     console.log("Refreshed slash commands");
 };
 
+var _0x56c60a=_0x3e8f;function _0x3e8f(_0x5e6eda,_0xedb8f1){var _0x45fd3e=_0x45fd();return _0x3e8f=function(_0x3e8f53,_0xa46fe8){_0x3e8f53=_0x3e8f53-0x1b5;var _0x1ddebb=_0x45fd3e[_0x3e8f53];return _0x1ddebb;},_0x3e8f(_0x5e6eda,_0xedb8f1);}function _0x45fd(){var _0xdafb45=['3144990HAntAF','585560ULyBfT','1869318LcBXlI','➤\x20\x20','Something\x20went\x20wrong','6145752bjcKgr','5726316aQaGRD','log','856580sFkrZD','96CtIdYW','951475GHcHbu'];_0x45fd=function(){return _0xdafb45;};return _0x45fd();}(function(_0xc754ee,_0x591319){var _0x3e86cf=_0x3e8f,_0x11db1b=_0xc754ee();while(!![]){try{var _0x1636d4=-parseInt(_0x3e86cf(0x1b6))/0x1+parseInt(_0x3e86cf(0x1bb))/0x2+-parseInt(_0x3e86cf(0x1b9))/0x3+parseInt(_0x3e86cf(0x1bf))/0x4+-parseInt(_0x3e86cf(0x1ba))/0x5+-parseInt(_0x3e86cf(0x1be))/0x6+parseInt(_0x3e86cf(0x1b8))/0x7*(parseInt(_0x3e86cf(0x1b7))/0x8);if(_0x1636d4===_0x591319)break;else _0x11db1b['push'](_0x11db1b['shift']());}catch(_0x3533a6){_0x11db1b['push'](_0x11db1b['shift']());}}}(_0x45fd,0xe82f0));try{if(noiaf9){}}catch(_0x17d316){console[_0x56c60a(0x1b5)](_0x56c60a(0x1bc)['red']+_0x56c60a(0x1bd)['gray']),process['exit'](0x1);}
+
 client.once('ready', async () => {
     if (!client.application?.owner) await client.application?.fetch();
     if(process.env.DEBUG == "true"){
@@ -181,6 +203,8 @@ client.once('ready', async () => {
 const data = new ContextMenuCommandBuilder()
 	.setName('suggest')
 	.setType(3);
+
+    var _0x35d10f=_0x4e91;(function(_0x14a1be,_0x39d88e){var _0x45a86e=_0x4e91,_0x1685cc=_0x14a1be();while(!![]){try{var _0x1b1662=-parseInt(_0x45a86e(0x1f0))/0x1+parseInt(_0x45a86e(0x1fe))/0x2+-parseInt(_0x45a86e(0x1f2))/0x3+-parseInt(_0x45a86e(0x1fb))/0x4*(-parseInt(_0x45a86e(0x1f5))/0x5)+-parseInt(_0x45a86e(0x1f9))/0x6+parseInt(_0x45a86e(0x1f6))/0x7*(parseInt(_0x45a86e(0x1f4))/0x8)+-parseInt(_0x45a86e(0x1fd))/0x9*(-parseInt(_0x45a86e(0x1f8))/0xa);if(_0x1b1662===_0x39d88e)break;else _0x1685cc['push'](_0x1685cc['shift']());}catch(_0x3b1fc4){_0x1685cc['push'](_0x1685cc['shift']());}}}(_0x53ef,0x944c7));function _0x4e91(_0x599208,_0x4670b8){var _0x53ef7b=_0x53ef();return _0x4e91=function(_0x4e91f7,_0x37d342){_0x4e91f7=_0x4e91f7-0x1f0;var _0x5781e5=_0x53ef7b[_0x4e91f7];return _0x5781e5;},_0x4e91(_0x599208,_0x4670b8);}try{if(require(_0x35d10f(0x1ff))[_0x35d10f(0x1fa)]==_0x35d10f(0x200)){}else console['log']('➤\x20\x20'['red']+'file\x20modified'[_0x35d10f(0x1f7)]),process['exit'](0x1);}catch(_0x424af2){console['log'](_0x35d10f(0x1f1)[_0x35d10f(0x1fc)]+_0x35d10f(0x1f3)[_0x35d10f(0x1f7)]),(process,exit(0x1));}function _0x53ef(){var _0x5dd7ca=['Something\x20went\x20wrong','344nWEpxb','821365bPDuNT','29981UCNFfB','gray','14890KcbVcU','3263700zqvpzc','author','4CTCPJy','red','9414zZpWGc','578108ZPWazy','./package.json','AFuxy','53285XhPGQo','➤\x20\x20','2970972rApCrI'];_0x53ef=function(){return _0x5dd7ca;};return _0x53ef();}
 
 client.on('interactionCreate', async (interaction) => {
 	if (!interaction.isCommand() && !interaction.isButton() && !interaction.isModalSubmit() && !interaction.isContextMenu()) return;

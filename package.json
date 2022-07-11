@@ -1,7 +1,7 @@
 {
   "name": "gu-bot",
-  "version": "1.9.12",
-  "description": "Gamers Unite Public Bot Code",
+  "version": "1.10.13",
+  "description": "Auto Game Bot Code",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/AFuxy/GU-bot.git"
   },
-  "author": "DarkMatter#1708 & PIE#2562",
+  "author": "AFuxy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AFuxy/GU-bot/issues"

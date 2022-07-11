@@ -4,6 +4,7 @@ const {
     Modal,
     TextInputComponent
 } = require("discord.js");
+const fs = require('fs');
 module.exports = {
     "name": "games",
     "description": "Get a game role",
@@ -12,28 +13,7 @@ module.exports = {
             name: 'games',
             description: 'Pick a game from our list (Suggest more with /suggest)',
             type: 'STRING',
-            choices: [
-                {name: "Minecraft", value: "minecraft"},
-                {name: "COD", value: "cod"},
-                {name: "FNAF", value: "fnaf"},
-                {name: "PC Building Sim", value: "pcbuild"},
-                {name: "GMOD", value: "gmod"},
-                {name: "VRchat", value: "vrchat"},
-                {name: "Rec Room", value: "recroom"},
-                {name: "Web Games", value: "webgames"},
-                {name: "Watch Dogs", value: "watchdogs"},
-                {name: "Among Us", value: "amongus"},
-                {name: "Astroneer", value: "astroneer"},
-                {name: "Cluster Truck", value: "clustertruck"},
-                {name: "Skyrim", value: "skyrim"},
-                {name: "Farm Together", value: "farmtogether"},
-                {name: "GTA", value: "gta"},
-                {name: "Unturned", value: "unturned"},
-                {name: "hacknet", value: "hacknet"},
-                {name: "Rust", value: "rust"},
-                {name: "Muck", value: "muck"},
-                {name: "Other (Will bring up a menu)", value: "other"},
-            ],
+            choices: JSON.parse(fs.readFileSync("./games.json")),
             required: true
         }
     ],
