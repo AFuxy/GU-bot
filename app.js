@@ -231,7 +231,7 @@ var _0x56c60a=_0x3e8f;function _0x3e8f(_0x5e6eda,_0xedb8f1){var _0x45fd3e=_0x45f
 
 client.once('ready', async () => {
     if (!client.application?.owner) await client.application?.fetch();
-    if(process.env.DEBUG == "true"){
+    // if(process.env.DEBUG == "true"){
         client.commands.forEach(async (command) => {
             if(!command.options) command.options = [];
             if(!command.developerOnly) command.developerOnly = false;
@@ -245,9 +245,9 @@ client.once('ready', async () => {
             };
             await (client.guilds.cache.get(process.env.SERVERID) ?? await client.guilds.fetch(process.env.SERVERID)).commands.create(data);
         });
-    }else{
-        refreshSlashCommands();
-    }
+    // }else{
+    //     refreshSlashCommands();
+    // }
     console.log('✔  '.green + colors.green(`Bot is ready | ${appversion}`));
     client.user.setActivity(`V${appversion}`, { type: 'WATCHING' });
 });

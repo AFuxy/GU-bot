@@ -1,6 +1,6 @@
 {
   "name": "gu-bot",
-  "version": "1.11.14",
+  "version": "1.11.15",
   "description": "Auto Game Bot Code",
   "main": "app.js",
   "scripts": {

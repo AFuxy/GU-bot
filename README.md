@@ -13,8 +13,7 @@ SERVERID=
 SUGGESTID=
 AUDITID=
 STAFFROLE=
-DEBUG=true
 ```
-> little note leave DEBUG as true if you want to use the game options as for some reason they don't work on public commands
+> Optional for your .env if "DEBUG" currently does nothing but in the future will provide more info for crashes
 
 3. After that, run `npm start`
