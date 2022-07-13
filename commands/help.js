@@ -19,7 +19,7 @@ module.exports = {
             commandlist = commandlist + `**/${commandName}** | \`${command.description}\`\n`;
         });
         var Help = new MessageEmbed()
-            .setColor("#0000FF")
+            .setColor(color)
             .setTitle("Help")
             .addField("Commands", commandlist)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });

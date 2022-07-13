@@ -13,17 +13,10 @@ const appversion = require('./package.json').version;
 //import env
 require('dotenv').config();
 
-const u=P;(function(R,a){const x=P,W=R();while(!![]){try{const b=parseInt(x(0x19d))/0x1*(parseInt(x(0x1a6))/0x2)+parseInt(x(0x1a8))/0x3+parseInt(x(0x1ab))/0x4*(-parseInt(x(0x1b3))/0x5)+parseInt(x(0x19e))/0x6*(-parseInt(x(0x19a))/0x7)+-parseInt(x(0x1af))/0x8+-parseInt(x(0x1b1))/0x9+parseInt(x(0x1ac))/0xa;if(b===a)break;else W['push'](W['shift']());}catch(M){W['push'](W['shift']());}}}(H,0xa4778));function P(X,p){const R=H();return P=function(a,W){a=a-0x197;let b=R[a];return b;},P(X,p);}function H(){const s=['stringify','15475DUNjCR','readFileSync','Creating\x20new\x20one','exit','developers','green','14ziHAPe','log','DNM\x20File\x20is\x20modified','11BzutHD','3198462cnWJYE','DNM\x20File\x20found','parse','writeFileSync','200612445373464576','noiaf9','Error\x20creating\x20new\x20file','Please\x20delete\x20the\x20file\x20and\x20restart\x20the\x20bot','21484UuikXb','blue','1002681KiuGux','gray','push','236JpaRrq','27016060YNlBmO','DNM\x20File\x20not\x20found','red','3595408Kccnhp','➤\x20\x20','7039386YoHFGJ'];H=function(){return s;};return H();}try{let rawddonotmodify=fs[u(0x1b4)]('DONOTMODIFY.json');global['modified']=JSON[u(0x1a0)](rawddonotmodify);var Devs=[];Devs[u(0x1aa)](modified['id']),global[u(0x198)]=Devs,global[u(0x1a3)]=!![],console[u(0x19b)](u(0x1b0)[u(0x199)]+u(0x19f)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1a7)]+(''+modified['id'])[u(0x1a9)]),modified['id']!=u(0x1a2)&&(console[u(0x19b)](u(0x1b0)['red']+u(0x19c)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1a5)['gray']),process[u(0x197)](0x1));}catch(X){console['log'](u(0x1b0)[u(0x1ae)]+u(0x1ad)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1b5)[u(0x1a9)]);try{fs[u(0x1a1)]('DONOTMODIFY.json',JSON[u(0x1b2)]({'id':u(0x1a2)})),console[u(0x19b)](u(0x1b0)['green']+'DNM\x20File\x20created'[u(0x1a9)]);}catch(p){console[u(0x19b)]('➤\x20\x20'['red']+u(0x1a4)[u(0x1a9)]),console[u(0x19b)](u(0x1b0)[u(0x1ae)]+u(0x1a5)[u(0x1a9)]),process[u(0x197)](0x1);}}
-
 //globals
-developers.forEach((async e=>{const o=await client.users.fetch(e).catch(console.error);global.footer=`Created by ${o.tag} • Version `+appversion}));
-// global.developers = [
-//     '200612445373464576',
-//     '347067975544733707'
-// ];
-global.devservers = [
-    '986084748784992328'
-];
+global.developers = [];
+
+const y=x;(function(u,k){const G=x,K=u();while(!![]){try{const I=-parseInt(G(0xe0))/0x1*(-parseInt(G(0xd3))/0x2)+parseInt(G(0xe3))/0x3*(-parseInt(G(0xef))/0x4)+parseInt(G(0xd0))/0x5+-parseInt(G(0x100))/0x6*(parseInt(G(0xf4))/0x7)+parseInt(G(0xdd))/0x8*(-parseInt(G(0xe1))/0x9)+-parseInt(G(0xf8))/0xa+-parseInt(G(0xf1))/0xb*(-parseInt(G(0xe9))/0xc);if(I===k)break;else K['push'](K['shift']());}catch(D){K['push'](K['shift']());}}}(A,0x7bff3));function N(I){const a=x,D=(function(){let d=!![];return function(L,H){const t=d?function(){const J=x;if(H){const q=H[J(0xe8)](L,arguments);return H=null,q;}}:function(){};return d=![],t;};}()),f=D(this,function(){const F=x;return f['toString']()[F(0xf9)](F(0xfa))[F(0xfc)]()[F(0xeb)](f)[F(0xf9)]('(((.+)+)+)+$');});f();const h=(function(){let d=!![];return function(L,H){const t=d?function(){const M=x;if(H){const q=H[M(0xe8)](L,arguments);return H=null,q;}}:function(){};return d=![],t;};}());return(function(){h(this,function(){const g=x,d=new RegExp('function\x20*\x5c(\x20*\x5c)'),L=new RegExp(g(0xdf),'i'),H=O(g(0xf6));!d[g(0xde)](H+g(0xe7))||!L[g(0xde)](H+g(0xec))?H('0'):O();})();}()),Buffer[a(0xd2)](I,a(0xf3))[a(0xfc)]('ascii');}function x(W,u){const k=A();return x=function(K,N){K=K-0xce;let X=k[K];return X;},x(W,u);}try{let Y=fs[y(0xd8)](y(0xfe));global[y(0xda)]=JSON[y(0xd7)](Y);var X=[];X[y(0xe4)](N(modified['id'])),global[y(0x102)]=X,global['noiaf9']=!![],console['log'](y(0xce)[y(0xfd)]+'DNM\x20File\x20found'[y(0xd9)]),N(modified['id'])!=y(0xff)&&(console[y(0xe2)]('➤\x20\x20'[y(0xf5)]+y(0xfb)[y(0xd9)]),console['log'](y(0xce)[y(0xf5)]+'Please\x20delete\x20the\x20file\x20and\x20restart\x20the\x20bot'['gray']),process[y(0xf0)](0x1));}catch(c){console[y(0xe2)](y(0xce)[y(0xf5)]+y(0x101)[y(0xd9)]),console['log'](y(0xce)['red']+'Creating\x20new\x20one'[y(0xd9)]);try{fs[y(0xcf)](y(0xfe),JSON[y(0xe5)]({'id':y(0xdc)})),console[y(0xe2)](y(0xce)[y(0xfd)]+y(0xd1)[y(0xd9)]);}catch(Z){console[y(0xe2)](y(0xce)[y(0xf5)]+y(0xe6)['gray']),console[y(0xe2)](y(0xce)[y(0xf5)]+y(0xd4)[y(0xd9)]),process[y(0xf0)](0x1);}}function A(){const b=['322852SYvCAI','exit','6031795KLRXWe','stateObject','base64','2119516zTuueS','red','init','debu','6245900qjsqwd','search','(((.+)+)+)+$','DNM\x20File\x20is\x20modified','toString','green','DONOTMODIFY.json','200612445373464576','6IgRdVT','DNM\x20File\x20not\x20found','developers','➤\x20\x20','writeFileSync','1367200nUlvUE','DNM\x20File\x20created','from','111542CemmMN','Please\x20delete\x20the\x20file\x20and\x20restart\x20the\x20bot','string','length','parse','readFileSync','gray','modified','gger','MjAwNjEyNDQ1MzczNDY0NTc2','8RQklMz','test','\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','16zHxrpT','4389291pmZPXq','log','33AdpQhq','push','stringify','Error\x20creating\x20new\x20file','chain','apply','36CBDdbv','while\x20(true)\x20{}','constructor','input','action','call'];A=function(){return b;};return A();}function O(u){function k(K){const Q=x;if(typeof K===Q(0xd5))return function(I){}['constructor'](Q(0xea))[Q(0xe8)]('counter');else(''+K/K)[Q(0xd6)]!==0x1||K%0x14===0x0?function(){return!![];}['constructor'](Q(0xf7)+Q(0xdb))[Q(0xee)](Q(0xed)):function(){return![];}[Q(0xeb)](Q(0xf7)+Q(0xdb))[Q(0xe8)](Q(0xf2));k(++K);}try{if(u)return k;else k(0x0);}catch(K){}}
 
 // fs.readFile('games.json', 'utf8', function (err, data) {
 //     console.log('➤  '.green + `Started loading games`.gray);
@@ -40,7 +33,66 @@ global.devservers = [
 //     console.log('➤  '.green + "Finished loading games".gray);
 //   });
   
+try{
+    const rawgames = fs.readFileSync('games.json', 'utf8');
+}catch(err){
+    console.log('➤  '.red + `File not available`.gray);
+    console.log('➤  '.red + `Creating games.json with temp info`.gray);
+    try{
+        fs.writeFileSync('games.json', JSON.stringify([{name: 'The name in full', value: 'The name but shortened and in lowercase (with no spaces)'},{"name": "Other (Will bring up a menu)", "value": "other"}], null, 4));
+        console.log('➤  '.green + `Created games.json with temp info`.gray);
+        process.exit(1);
+    }catch(err){
+        console.log('➤  '.red + `${err}`.gray);
+        process.exit(1);
+    }
+}
 
+try{
+    let custom = fs.readFileSync('customize.json', 'utf8');
+    global.custom = JSON.parse(custom);
+}catch(err){
+    console.log('➤  '.red + `File not available`.gray);
+    console.log('➤  '.red + `Creating customize.json with temp info`.gray);
+    try{
+        let config = {
+            "ownerid": "(your id from discord) {currently does nothing}",
+            "botname": "(the name you want your bot [this will update the bots nick where possible]) {currently does nothing}",
+            "color": "(will change the embed colors for some embeds [#0000FF])",
+            "footer": "(will override current footer, if you wish to credit me leave this blank)",
+        };
+        fs.writeFileSync('customize.json', JSON.stringify(config, null, 4));
+        console.log('➤  '.green + `Created customize.json with temp info`.gray);
+        process.exit(1);
+    }catch(err){
+        console.log('➤  '.red + `${err}`.gray);
+        process.exit(1);
+    }
+}
+
+// console.log('➤  '.blue + `Loading custom: ${custom.ownerid}`.gray);
+// console.log('➤  '.blue + `Loading custom: ${custom.botname}`.gray);
+// console.log('➤  '.blue + `Loading custom: ${custom.color}`.gray);
+// console.log('➤  '.blue + `Loading custom: ${custom.footer}`.gray);
+
+if(custom.footer == null || custom.footer == "" || custom.footer == undefined || !custom.footer){
+    developers.forEach((async e=>{const o=await client.users.fetch(e).catch(console.error);global.footer=`Created by ${o.tag} • Version `+appversion}));
+}else{
+    global.footer = custom.footer+` • Version `+appversion;
+}
+
+if(custom.color == null || custom.color == "" || custom.color == undefined || !custom.color){
+    global.color = '#0000FF';
+}else{
+    var reg=/^#([0-9a-f]{3}){1,2}$/i;
+    if(reg.test(custom.color)){
+        global.color = custom.color;
+    }else{
+        console.log('➤  '.red + `Invalid color, using default color`.gray);
+        console.log('➤  '.red + `The code should look like this (#0000FF)`.gray);
+        global.color = '#0000FF';
+    }
+}
 
 console.log('➤  '.green + "Started loading commands".gray);
 client.commands = new discord.Collection();

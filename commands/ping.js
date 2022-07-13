@@ -7,7 +7,7 @@ module.exports = {
     "setDMPermission": false,
     async execute(interaction){
         var pingEmbed = new MessageEmbed()
-            .setColor("#0000|FF")
+            .setColor(color)
             .setTitle("Ping")
             .setDescription(`Pong! ${client.ws.ping ? `The ping is ${Math.round(client.ws.ping)}ms.` : ''}`)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });

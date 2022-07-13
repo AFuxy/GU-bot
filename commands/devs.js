@@ -15,12 +15,12 @@ module.exports = {
 		const row = new MessageActionRow()
 		.addComponents(
 			new MessageButton()
-				.setLabel('Discord')
+				.setLabel('Github')
 				.setStyle('LINK')
-				.setURL(`https://discord.gg/U6JW39PhJM`),
+				.setURL(`https://github.com/AFuxy`),
 		);
         var Help = new MessageEmbed()
-            .setColor("#0000FF")
+            .setColor(color)
             .setTitle("Developers")
             .setDescription(DevList)
             .setFooter({ text: `${footer}`, iconURL: `${client.user.avatarURL()}` });

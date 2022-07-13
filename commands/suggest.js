@@ -31,7 +31,7 @@ module.exports = {
         const GameURL = new TextInputComponent()
 			    .setCustomId('GameURL')
 		        // The label is the prompt the user sees for this input
-			    .setLabel("A URL to the game offical site or Steam")
+			    .setLabel("A URL to the games offical site or Steam")
 		        // Short means only a single line of text
 			    .setStyle('SHORT');
             const Game2 = new MessageActionRow().addComponents(GameURL);

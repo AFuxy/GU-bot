@@ -10,9 +10,11 @@
 ```env
 TOKEN=
 SERVERID=
+SUGGESTID=
 AUDITID=
 STAFFROLE=
-DEBUG=false
+DEBUG=true
 ```
+> little note leave DEBUG as true if you want to use the game options as for some reason they don't work on public commands
 
 3. After that, run `npm start`
